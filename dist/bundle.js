@@ -26,7 +26,18 @@ eval("var rough=function(){\"use strict\";function t(t,e,s){if(t&&t.length){cons
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var roughjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! roughjs */ \"./node_modules/roughjs/bundled/rough.js\");\n/* harmony import */ var roughjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(roughjs__WEBPACK_IMPORTED_MODULE_0__);\n\n\nconsole.log((roughjs__WEBPACK_IMPORTED_MODULE_0___default()))\n\nconst canvas = document.querySelector(\"canvas\")\nconst gl = canvas.getContext(\"webgl\")\n\nconst vertex = `\nattribute vec2 position;\nvoid main() {\n  gl_PointSize = 1.0;\n  gl_Position = vec4(position, 1.0, 1.0);\n}\n`\n\nconst fragment = `\nprecision mediump float;\nvoid main() {\n  gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);\n}\n`\n\n// 顶点着色器\nconst vertexShader = gl.createShader(gl.VERTEX_SHADER)\ngl.shaderSource(vertexShader, vertex)\ngl.compileShader(vertexShader)\n\n// 片元着色器\nconst fragmentShader = gl.createShader(gl.FRAGMENT_SHADER)\ngl.shaderSource(fragmentShader, fragment)\ngl.compileShader(fragmentShader)\n\nconst program = gl.createProgram()\ngl.attachShader(program, vertexShader)\ngl.attachShader(program, fragmentShader)\ngl.linkProgram(program)\n\ngl.useProgram(program)\n\nconst points = new Float32Array([-1, -1, 0, 1, 1, -1])\n\nconst bufferId = gl.createBuffer()\ngl.bindBuffer(gl.ARRAY_BUFFER, bufferId)\ngl.bufferData(gl.ARRAY_BUFFER, points, gl.STATIC_DRAW)\n\nconst vPosition = gl.getAttribLocation(program, \"position\")\ngl.vertexAttribPointer(vPosition, 2, gl.FLOAT, false, 0, 0)\ngl.enableVertexAttribArray(vPosition)\n\ngl.clear(gl.COLOR_BUFFER_BIT)\ngl.drawArrays(gl.TRIANGLES, 0, points.length / 2)\n\n\n//# sourceURL=webpack://webgl/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mountain__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mountain */ \"./src/mountain.js\");\n\n\n(0,_mountain__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\n\n\n//# sourceURL=webpack://webgl/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/mountain.js":
+/*!*************************!*\
+  !*** ./src/mountain.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ drawMountain)\n/* harmony export */ });\n/* harmony import */ var roughjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! roughjs */ \"./node_modules/roughjs/bundled/rough.js\");\n/* harmony import */ var roughjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(roughjs__WEBPACK_IMPORTED_MODULE_0__);\n\n\nfunction drawMountain() {\n  console.log((roughjs__WEBPACK_IMPORTED_MODULE_0___default()))\n  const canvas = document.querySelector(\"canvas\")\n  const rc = roughjs__WEBPACK_IMPORTED_MODULE_0___default().canvas(canvas)\n  const hillOpts = {\n    roughness: 2.8,\n    strokeWidth: 2,\n    fill: \"blue\",\n  }\n\n  rc.path(\"M76 256L176 156L276 256\", hillOpts)\n  rc.path(\"M76 256L176 156L276 256\", hillOpts)\n\n  rc.circle(256, 106, 105, {\n    stroke: \"red\",\n    strokeWidth: 4,\n    fill: \"rgba(255, 255, 0, 0.4)\",\n    fillStyle: \"solid\",\n  })\n}\n\n\n//# sourceURL=webpack://webgl/./src/mountain.js?");
 
 /***/ })
 
