@@ -1,8 +1,7 @@
-import rough from "roughjs"
+import rough from "roughjs/bin/rough"
 
 export default function drawMountain() {
-  console.log(rough)
-  const canvas = document.querySelector("canvas")
+  const canvas = window.document.querySelector("canvas")
   const rc = rough.canvas(canvas)
   const hillOpts = {
     roughness: 2.8,
